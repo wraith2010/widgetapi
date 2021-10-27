@@ -12,7 +12,7 @@ class MainHandler(tornado.web.RequestHandler):
 
     def make_app():
         # URL Mapping
-        return tornado.web.Application([(r"/", MainHandler), (r"/widget", WidgetHandler)])
+        return tornado.web.Application([(r"/", MainHandler), (r"/widget/", WidgetHandler), (r"/widget/(?P<pid>\w+)", WidgetHandler)])
 
 
 if __name__ == "__main__":

@@ -3,28 +3,34 @@ import tornado.web
 from domain.Widget import Widget
 from services.widgetService import WidgetService
 
+
 class WidgetHandler(tornado.web.RequestHandler):
 
     def get(self):
-        widget_list = []
+        return self.write(json.dumps([o.toJson() for o in WidgetService.list()]))
 
-        widget01 = Widget(1, 'large flange', 3)
-        widget_list.append(widget01)
+    def get(self, **kwargs):
 
-        widget02 = Widget(2, 'small flange', 5)
-        widget_list.append(widget02)
+        if len(kwargs.keys()) == 0:
+            return self.write(json.dumps([o.toJson() for o in WidgetService.list()]))
 
-        widget03 = Widget(3, 'funky flange', 20)
-        widget_list.append(widget03)
+        return self.write(json.dumps([o.toJson() for o in WidgetService.retrieve(kwargs['pid'])]))
 
-        print(json.dumps([o.toJson() for o in widget_list]))
+    def put(self, **kwargs):
 
-        return self.write(json.dumps([o.toJson() for o in widget_list]))
-
-    def put(self):
-        widget_list = []
-        
         data_list = tornado.escape.json_decode(self.request.body)
- 
+
         for data in data_list:
-            WidgetService.save(Widget(data['name'],data['part_count']))
+            WidgetService.save(Widget(data['name'], data['part_count']))
+
+    def post(self, **kwargs):
+        data_list = tornado.escape.json_decode(self.request.body)
+
+        for data in data_list:
+            print(data)
+            WidgetService.update(Widget(data))
+
+    def delete(self, **kwargs):
+        if len(kwargs.keys()) == 1:
+            WidgetService.delete(kwargs['pid'])
+        
