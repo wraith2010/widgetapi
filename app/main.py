@@ -1,6 +1,8 @@
 import tornado.ioloop
 import tornado.web
 
+from handlers.WidgetHandler import WidgetHandler
+
 
 class MainHandler(tornado.web.RequestHandler):
     html = '<html><head><title>widget api</title></head><body style="text-align:center;"><h1>Widget API Server is Live</h1></body></html>'
@@ -9,7 +11,8 @@ class MainHandler(tornado.web.RequestHandler):
         self.write(MainHandler.html)
 
     def make_app():
-        return tornado.web.Application([(r"/", MainHandler), ])  # URL Mapping
+        # URL Mapping
+        return tornado.web.Application([(r"/", MainHandler), (r"/widget", WidgetHandler)])
 
 
 if __name__ == "__main__":
