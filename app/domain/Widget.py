@@ -1,14 +1,14 @@
 import json
 
+
 class Widget:
 
     def __init__(self, pid, name, part_count):
         self.pid = pid
         self.name = name
         self.part_count = part_count
-        
 
-    def toJson(self):    
+    def toJson(self):
         return json.dumps(self.__dict__)
 
 
