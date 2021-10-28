@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "widgets",
+		"_postman_id": "1999f9e3-3d81-9f7e-9b7e-e3d6aa13b134",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "widget get test",
+			"request": {
+				"url": "localhost:8888/widget/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "widget test"
+			},
+			"response": []
+		},
+		{
+			"name": "widget get specific",
+			"request": {
+				"url": "localhost:8888/widget/5",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "widget test"
+			},
+			"response": []
+		},
+		{
+			"name": "widget delete",
+			"request": {
+				"url": "localhost:8888/widget/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "widget test"
+			},
+			"response": []
+		},
+		{
+			"name": "widget put array test",
+			"request": {
+				"url": "localhost:8888/widget/",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"name\": \"large flange 02\", \"partCount\": 3}]"
+				},
+				"description": "widget test"
+			},
+			"response": []
+		},
+		{
+			"name": "widget  post array update",
+			"request": {
+				"url": "localhost:8888/widget/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"pid\":1, \"name\": \"test flange\", \"partCount\": 3}]"
+				},
+				"description": "widget test"
+			},
+			"response": []
+		}
+	]
+}

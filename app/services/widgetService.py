@@ -5,30 +5,27 @@ from domain.Widget import Widget
 class WidgetService:
 
     def getConnection():
-        connection = sqlite3.connect('D:\\databases\\widget.db')
+        connection = sqlite3.connect('database/widget.db')
         connection.row_factory = sqlite3.Row
         return connection
 
     def update(widget):
         connection = WidgetService.getConnection()
         connection.execute("UPDATE widgets SET name = ?, partCount = ? WHERE pid = ?;",
-                           (widget.name, widget.part_count, widget.pid))
+                           (widget.name, widget.partCount, widget.pid))
         connection.commit()
 
     def save(widget):
         connection = WidgetService.getConnection()
         connection.execute(
-            "INSERT INTO widgets (name, partCount) VALUES (?, ?);", (widget.name, widget.part_count))
+            "INSERT INTO widgets (name, partCount) VALUES (?, ?);", (widget.name, widget.partCount))
         connection.commit()
-
-        print("saving %s", widget.toJson)
 
     def list():
         widget_List = []
         connection = WidgetService.getConnection()
         cursor = connection.execute("SELECT * FROM widgets;")
         for row in cursor:
-            print(row)
             widget_List.append(Widget(row))
 
         return widget_List

@@ -3,24 +3,19 @@ import json
 
 class Widget:
 
-    def __init__(self, *args): 
+    def __init__(self, *args):
 
         if len(args) > 1:
             self.name = args[0]
-            self.part_count = args[1]
+            self.partCount = args[1]
 
         elif len(args) == 1:
-            row  = args[0]
-            if 'pid' in row: 
-                self.pid = row['pid']
-            if 'name' in row: 
-                self.name = row['name']
-            if 'part_count' in row: 
-                self.part_count = row['part_count']
-            if 'Created' in row: 
-                self.created = row['Created']
-            if 'modified' in row: 
-                self.modified = row['modified']
+            row = args[0]
+            self.pid = row['pid']
+            self.name = row['name']
+            self.partCount = row['partCount']
+            self.created = row['created']
+            self.modified = row['modified']
 
     def toJson(self):
         return json.dumps(self.__dict__)
